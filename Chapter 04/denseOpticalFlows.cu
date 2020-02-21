@@ -208,7 +208,7 @@ int main() {
 	{
 		farn->calc(d_im0, d_im1, d_opticalFlow);
 
-		computeFlowAndShow("Farneb‰ck", d_opticalFlow);
+		computeFlowAndShow("Farneb√§ck", d_opticalFlow);
 	}
 
 	/*********************/
