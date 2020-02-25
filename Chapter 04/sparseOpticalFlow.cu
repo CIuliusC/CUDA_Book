@@ -91,11 +91,11 @@ int main() {
 	cout << "Image size: " << im0.cols << " x " << im0.rows << endl;
 
 	Mat im0Gray;
-	Mat im1Gray;
+	//Mat im1Gray;
 
 	// --- Converts images im0 and im1 to gray scale
 	cv::cvtColor(im0, im0Gray, COLOR_BGR2GRAY);
-	cv::cvtColor(im1, im1Gray, COLOR_BGR2GRAY);
+	//cv::cvtColor(im1, im1Gray, COLOR_BGR2GRAY);
 
 	/***********************************/
 	/* SPOTTING GOOD FEATURES TO TRACK */
@@ -132,10 +132,10 @@ int main() {
 	/**************************************/
 	GpuMat d_frame0(im0);
 	GpuMat d_frame1(im1);
-	GpuMat d_frame1Gray(im1Gray);
+	//GpuMat d_frame1Gray(im1Gray);
 	GpuMat d_nextPoints;
 	GpuMat d_status;
-	GpuMat d_flow(im0.size(), CV_32FC2);
+	//GpuMat d_flow(im0.size(), CV_32FC2);
 
 	int		winSize = 21;
 	int		maxLevel = 3;
