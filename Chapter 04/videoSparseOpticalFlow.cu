@@ -105,7 +105,7 @@ void main() {
 	double	qualityLevel	= 0.01;
 	double	minDistance		= 0;
 	int		blockSize		= 5;
-	Ptr< cuda::CornersDetector> detector = cuda::createGoodFeaturesToTrackDetector(d_im0Gray.type(), maxCorners, qualityLevel, minDistance, blockSize);
+	Ptr<cuda::CornersDetector> detector = cuda::createGoodFeaturesToTrackDetector(d_im0Gray.type(), maxCorners, qualityLevel, minDistance, blockSize);
 
 	/**************************************/
 	/* LUCAS-KANADE'S SPARSE OPTICAL FLOW */
@@ -117,7 +117,7 @@ void main() {
 	int		winSize			= 21;
 	int		maxLevel		= 3;
 	int		iters			= 30;
-	Ptr< cuda::SparsePyrLKOpticalFlow> d_pyrLK = cuda::SparsePyrLKOpticalFlow::create(Size(winSize, winSize), maxLevel, iters);
+	Ptr<cuda::SparsePyrLKOpticalFlow> d_pyrLK = cuda::SparsePyrLKOpticalFlow::create(Size(winSize, winSize), maxLevel, iters);
 
 	while (1) {
 
