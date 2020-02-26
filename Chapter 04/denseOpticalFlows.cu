@@ -201,10 +201,6 @@ int main() {
 	//							  a box filter of the same size for optical flow estimation; usually, this option 
 	//							  gives z more accurate flow than with a box filter, at the cost of lower speed; normally, winsize for a Gaussian window should be set to a larger value to achieve the same level of robustness.
 	Ptr<cuda::FarnebackOpticalFlow>		farn = cuda::FarnebackOpticalFlow::create(6, 0.4, false, 13, 15, 5, 1.1, 256);
-
-	/*************/
-	/* FARNEBACK */
-	/*************/
 	{
 		farn->calc(d_im0, d_im1, d_opticalFlow);
 
@@ -222,7 +218,6 @@ int main() {
 	//		outer_iterations	= number of pyramid levels
 	//		solver_iterations	= number of linear system solver iterations
 	Ptr<cuda::BroxOpticalFlow>			brox = cuda::BroxOpticalFlow::create(0.197f, 50.0f, 0.8f, 10, 77, 10);
-
 	{
 		GpuMat d_im0Scaled;
 		GpuMat d_im1Scaled;
