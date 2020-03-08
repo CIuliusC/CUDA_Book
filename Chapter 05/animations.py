@@ -53,16 +53,12 @@ def animate(i):
     line.set_data(x, y)
     return (line, )
 
-"""Create the animation object. The object needs to persist, so it must be assigned to a variable. A ```100``` frames animation with a ```50ms``` delay between frames is run. ```blit``` tells the animation to only re-draw the pieces of the plot which have changed. With ```blit = True```, the animations display much more quickly."""
+"""Create the animation object. The object needs to persist, so it must be assigned to a variable. A ```100``` frames animation with a ```50ms``` delay between frames is run. ```blit``` tells the animation to only re-draw the pieces of the plot which have changed. With ```blit = True```, the animations display much more quickly. Saving option is also set."""
 
 anim = animation.FuncAnimation(fig, animate, init_func = init, frames = 100, interval = 50, blit = True)
+anim.save('animationTest.mp4', fps = 30, extra_args=['-vcodec', 'libx264'])
 
 """Below is the part which makes it work on Colab. ```jshtml``` creates a javascript animation."""
-
-rc('animation', html = 'jshtml')
-anim
-
-anim.save('basic_animation.mp4', fps=30, extra_args=['-vcodec', 'libx264'])
 
 rc('animation', html = 'jshtml')
 anim
