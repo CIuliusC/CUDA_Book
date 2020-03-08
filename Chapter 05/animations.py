@@ -36,15 +36,6 @@ ax.set_ylim((-2, 2))
 
 line, = ax.plot([], [], lw = 2)
 
-"""Create the functions which enable animation.
-
-```init()``` will be called to create the frame to be animated. Although it sets here the line data to nothing, it tells the animator which objects on the plot must be updated in each frame.
-"""
-
-def init():
-    line.set_data([], [])
-    return (line, )
-
 """The ```animate``` function has a single parameter as input, namely ```i```, which acts as time and draws a sinusoidal moving right. Once again, we return a tuple of the modified plot objects. This tells the animation framework what parts of the plot should be animated."""
 
 def animate(i):
@@ -55,7 +46,7 @@ def animate(i):
 
 """Create the animation object. The object needs to persist, so it must be assigned to a variable. A ```100``` frames animation with a ```50ms``` delay between frames is run. ```blit``` tells the animation to only re-draw the pieces of the plot which have changed. With ```blit = True```, the animations display much more quickly. Saving option is also set."""
 
-anim = animation.FuncAnimation(fig, animate, init_func = init, frames = 100, interval = 50, blit = True)
+anim = animation.FuncAnimation(fig, animate, frames = 100, interval = 50, blit = True)
 anim.save('animationTest.mp4', fps = 30, extra_args=['-vcodec', 'libx264'])
 
 """Below is the part which makes it work on Colab. ```jshtml``` creates a javascript animation."""
