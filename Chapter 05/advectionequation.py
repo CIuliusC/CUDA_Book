@@ -93,7 +93,7 @@ def animate(i):
     line2.set_data(x, y)
     return (line1, line2)
 
-anim = animation.FuncAnimation(fig, animate, frames = N + 1, interval = 20)
+anim = animation.FuncAnimation(fig, animate, frames = M + 1, interval = 20)
 anim.save('leapfrog.mp4', fps = 30, extra_args=['-vcodec', 'libx264'])
 rc('animation', html = 'jshtml') 
 anim
