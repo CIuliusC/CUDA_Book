@@ -30,7 +30,10 @@ from pycuda.compiler import SourceModule
 # iDivUp FUNCTION #
 ###################
 def iDivUp(a, b):
-    return a // b + 1
+    # Round a / b to nearest higher integer value
+    a = np.int32(a)
+    b = np.int32(b)
+    return (a / b + 1) if (a % b != 0) else (a / b)
 
 ########
 # MAIN #
@@ -72,7 +75,7 @@ d_c = gpuarray.zeros_like(d_a)
 # --- Define a reference to the __global__ function and call it
 deviceAdd = mod.get_function("deviceAdd")
 blockDim  = (BLOCKSIZE, 1, 1)
-gridDim   = (iDivUp(N, BLOCKSIZE), 1, 1)
+gridDim   = (int(iDivUp(N, BLOCKSIZE)), 1, 1)
 start.record()
 deviceAdd(d_c, d_a, d_b, np.int32(N), block = blockDim, grid = gridDim)
 end.record() 

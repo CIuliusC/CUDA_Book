@@ -28,7 +28,10 @@ from pycuda.compiler import SourceModule
 # iDivUp FUNCTION #
 ###################
 def iDivUp(a, b):
-    return a // b + 1
+    # Round a / b to nearest higher integer value
+    a = np.int32(a)
+    b = np.int32(b)
+    return (a / b + 1) if (a % b != 0) else (a / b)
 
 ########
 # MAIN #
@@ -61,7 +64,7 @@ __global__ void deviceAdd(float * __restrict__ d_c, const float * __restrict__ d
 
 deviceAdd = mod.get_function("deviceAdd")
 blockDim  = (BLOCKSIZE, 1, 1)
-gridDim   = (iDivUp(N, BLOCKSIZE), 1, 1)
+gridDim   = (int(iDivUp(N, BLOCKSIZE)), 1, 1)
 
 """The only difference with Version #1 is the use of ```cuda.In``` and ```cuda.Out``` when calling ```deviceAdd```. The former performs on-the-fly copies of ```h_a``` and ```h_b``` from host to device, while the latter copies the result of the processing to ```h_c```. This avoids the need of an explicit allocation of GPU memory space."""
 

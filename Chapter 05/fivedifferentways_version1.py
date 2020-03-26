@@ -31,7 +31,10 @@ from pycuda.compiler import SourceModule
 # iDivUp FUNCTION #
 ###################
 def iDivUp(a, b):
-    return a // b + 1
+    # Round a / b to nearest higher integer value
+    a = np.int32(a)
+    b = np.int32(b)
+    return (a / b + 1) if (a % b != 0) else (a / b)
 
 ########
 # MAIN #
@@ -90,7 +93,7 @@ deviceAdd = mod.get_function("deviceAdd")
 """Define the block size ```blockDim``` and the grid size ```gridDim```."""
 
 blockDim  = (BLOCKSIZE, 1, 1)
-gridDim   = (iDivUp(N, BLOCKSIZE), 1, 1)
+gridDim   = (int(iDivUp(N, BLOCKSIZE)), 1, 1)
 
 """Invoke the ```deviceAdd``` function. 
 Note that, up to here, ```N``` is an *object* of ```class int``` and not an integer number. Therefore, before using it, we must cast it to ```np.int32``` which is essentially the standard, single precision, floating point type.
