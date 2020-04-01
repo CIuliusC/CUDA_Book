@@ -25,8 +25,14 @@ from pycuda.compiler import SourceModule
 
 """```iDivUp``` function: if ```b``` divides ```a```, then ```a/b``` is returned, otherwise the function returns the integer division between ```a``` and ```b``` summed to 1```."""
 
+###################
+# iDivUp FUNCTION #
+###################
 def iDivUp(a, b):
-    return a // b + 1
+    # Round a / b to nearest higher integer value
+    a = np.int32(a)
+    b = np.int32(b)
+    return (a / b + 1) if (a % b != 0) else (a / b)
 
 """Kernel functions. 
 
