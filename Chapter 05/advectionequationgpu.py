@@ -117,7 +117,7 @@ def leapfrog(d_x, d_t, v, alpha):
 
   # --- Initial condition
   blockDim  = (BLOCKSIZE, 1, 1)
-  gridDim   = (iDivUp(N + 1, BLOCKSIZE), 1, 1)
+  gridDim   = (int(iDivUp(N + 1, BLOCKSIZE)), 1, 1)
   initialConditionKernel(d_u, d_t, d_x, np.float32(v), np.int32(N), block = blockDim, grid = gridDim)
 
   # --- First step
