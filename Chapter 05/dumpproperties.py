@@ -12,9 +12,6 @@ Original file is located at
 # --- PyCUDA initialization
 import pycuda.driver as cuda
 import pycuda.autoinit
-from pycuda.compiler import SourceModule
-
-cuda.init()
 
 print("%d device(s) found." % cuda.Device.count())
  
