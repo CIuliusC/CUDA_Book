@@ -68,6 +68,9 @@ gridDim   = (int(iDivUp(N, BLOCKSIZE)), 1, 1)
 
 """The only difference with Version #1 is the use of ```cuda.In``` and ```cuda.Out``` when calling ```deviceAdd```. The former performs on-the-fly copies of ```h_a``` and ```h_b``` from host to device, while the latter copies the result of the processing to ```h_c```. This avoids the need of an explicit allocation of GPU memory space."""
 
+# --- Warmup execution
+deviceAdd(cuda.Out(h_c), cuda.In(h_a), cuda.In(h_b), np.int32(N), block = blockDim, grid = gridDim)
+
 start.record()
 deviceAdd(cuda.Out(h_c), cuda.In(h_a), cuda.In(h_b), np.int32(N), block = blockDim, grid = gridDim)
 end.record() 
