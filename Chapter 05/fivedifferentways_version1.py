@@ -101,6 +101,7 @@ Before launching ```deviceAdd```, the ```start``` and ```end``` events are recor
 Note that, before the processing time can be measured, all the activities in the current context must be ceased. This is the reason why ```end.synchronize()``` is invoked. Remember that the host and device executions are asynchronous. Furthermore, with the event record, the device will record a time stamp for the event when it reaches that event in the stream. Without synchronization, it happens that the ```end``` event is recorded after the ```deviceAdd``` function execution is actually terminated, as we expect, but the ```print``` function is executed before ```deviceAdd``` has actually finished its execution.
 """
 
+# --- Warmup execution
 deviceAdd(d_c, d_a, d_b, np.int32(N), block = blockDim, grid = gridDim)
 
 start.record()
