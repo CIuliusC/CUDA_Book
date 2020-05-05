@@ -46,6 +46,9 @@ h_c = np.empty_like(h_a)
 d_a = gpuarray.to_gpu(h_a)
 d_b = gpuarray.to_gpu(h_b)
 
+# --- Warmup execution
+d_c = (d_a + d_b)
+
 start.record()
 d_c = (d_a + d_b)
 end.record() 
