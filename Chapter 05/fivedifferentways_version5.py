@@ -76,6 +76,10 @@ d_c = gpuarray.zeros_like(d_a)
 deviceAdd = mod.get_function("deviceAdd")
 blockDim  = (BLOCKSIZE, 1, 1)
 gridDim   = (int(iDivUp(N, BLOCKSIZE)), 1, 1)
+
+# --- Warmup execution
+deviceAdd(d_c, d_a, d_b, np.int32(N), block = blockDim, grid = gridDim)
+
 start.record()
 deviceAdd(d_c, d_a, d_b, np.int32(N), block = blockDim, grid = gridDim)
 end.record() 
