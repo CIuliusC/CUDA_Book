@@ -58,6 +58,7 @@ lin_comb = ElementwiseKernel(
 
 """Invoke the ```lin_comb``` function."""
 
+# --- Warmup execution
 lin_comb(d_c, d_a, d_b, 2, 3)
 
 start.record()
