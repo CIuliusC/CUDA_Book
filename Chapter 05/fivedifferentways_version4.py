@@ -58,19 +58,14 @@ lin_comb = ElementwiseKernel(
 
 """Invoke the ```lin_comb``` function."""
 
+lin_comb(d_c, d_a, d_b, 2, 3)
+
 start.record()
 lin_comb(d_c, d_a, d_b, 2, 3)
 end.record() 
 end.synchronize()
 secs = start.time_till(end) * 1e-3
 print("Processing time = %fs" % (secs))
-
-'''start.record()
-lin_comb(d_c, d_a, d_b, 1, 6)
-end.record() 
-end.synchronize()
-secs = start.time_till(end) * 1e-3
-print("Processing time = %fs" % (secs))'''
 
 """The last part is as usual."""
 
